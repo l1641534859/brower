@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.BlockMapper">
-  <resultMap id="BaseResultMap" type="com.example.demo.dto.Block">
+  <resultMap id="BaseResultMap" type="com.example.demo.po.Block">
     <id column="blockhash" jdbcType="CHAR" property="blockhash" />
     <result column="blockchain_id" jdbcType="INTEGER" property="blockchainId" />
     <result column="height" jdbcType="INTEGER" property="height" />
@@ -29,7 +29,7 @@
     delete from block
     where blockhash = #{blockhash,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.dto.Block">
+  <insert id="insert" parameterType="com.example.demo.po.Block">
     insert into block (blockhash, blockchain_id, height, 
       time, tx_size, size_on_disk, 
       difficulty, prev_blockhash, next_blockhash, 
@@ -41,7 +41,7 @@
       #{outputTotal,jdbcType=DOUBLE}, #{transactionFees,jdbcType=DOUBLE}, #{merkleRoot,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.dto.Block">
+  <insert id="insertSelective" parameterType="com.example.demo.po.Block">
     insert into block
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="blockhash != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dto.Block">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.po.Block">
     update block
     <set>
       <if test="blockchainId != null">
@@ -159,7 +159,7 @@
     </set>
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.dto.Block">
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.po.Block">
     update block
     set blockchain_id = #{blockchainId,jdbcType=INTEGER},
       height = #{height,jdbcType=INTEGER},

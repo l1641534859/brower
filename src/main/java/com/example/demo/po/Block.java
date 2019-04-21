@@ -119,6 +119,24 @@ public class Block {
         return merkleRoot;
     }
 
+    @Override
+    public String toString() {
+        return "Block{" +
+                "blockhash='" + blockhash + '\'' +
+                ", blockchainId=" + blockchainId +
+                ", height=" + height +
+                ", time=" + time +
+                ", txSize=" + txSize +
+                ", sizeOnDisk=" + sizeOnDisk +
+                ", difficulty=" + difficulty +
+                ", prevBlockhash='" + prevBlockhash + '\'' +
+                ", nextBlockhash='" + nextBlockhash + '\'' +
+                ", outputTotal=" + outputTotal +
+                ", transactionFees=" + transactionFees +
+                ", merkleRoot='" + merkleRoot + '\'' +
+                '}';
+    }
+
     public void setMerkleRoot(String merkleRoot) {
         this.merkleRoot = merkleRoot == null ? null : merkleRoot.trim();
     }

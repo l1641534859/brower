@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.Transaction_detailMapper">
-  <resultMap id="BaseResultMap" type="com.example.demo.dto.Transaction_detail">
+  <resultMap id="BaseResultMap" type="com.example.demo.po.Transaction_detail">
     <id column="txid" jdbcType="CHAR" property="txid" />
     <id column="address" jdbcType="VARCHAR" property="address" />
     <result column="type" jdbcType="TINYINT" property="type" />
@@ -10,25 +10,25 @@
   <sql id="Base_Column_List">
     txid, address, type, amount
   </sql>
-  <select id="selectByPrimaryKey" parameterType="com.example.demo.dto.Transaction_detailKey" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.example.demo.po.Transaction_detailKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from transaction_detail
     where txid = #{txid,jdbcType=CHAR}
       and address = #{address,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.example.demo.dto.Transaction_detailKey">
+  <delete id="deleteByPrimaryKey" parameterType="com.example.demo.po.Transaction_detailKey">
     delete from transaction_detail
     where txid = #{txid,jdbcType=CHAR}
       and address = #{address,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.dto.Transaction_detail">
+  <insert id="insert" parameterType="com.example.demo.po.Transaction_detail">
     insert into transaction_detail (txid, address, type, 
       amount)
     values (#{txid,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
       #{amount,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.dto.Transaction_detail">
+  <insert id="insertSelective" parameterType="com.example.demo.po.Transaction_detail">
     insert into transaction_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="txid != null">
@@ -59,7 +59,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dto.Transaction_detail">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.po.Transaction_detail">
     update transaction_detail
     <set>
       <if test="type != null">
@@ -72,7 +72,7 @@
     where txid = #{txid,jdbcType=CHAR}
       and address = #{address,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.dto.Transaction_detail">
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.po.Transaction_detail">
     update transaction_detail
     set type = #{type,jdbcType=TINYINT},
       amount = #{amount,jdbcType=DOUBLE}

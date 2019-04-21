@@ -5,7 +5,7 @@ import com.example.demo.po.Block;
 public interface BlockMapper {
     int deleteByPrimaryKey(String blockhash);
 
-    int insert(Block record);
+    int insert(Block block);
 
     int insertSelective(Block record);
 

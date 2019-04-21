@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.TransactionMapper">
-  <resultMap id="BaseResultMap" type="com.example.demo.dto.Transaction">
+  <resultMap id="BaseResultMap" type="com.example.demo.po.Transaction">
     <id column="txid" jdbcType="CHAR" property="txid" />
     <result column="txhash" jdbcType="CHAR" property="txhash" />
     <result column="blockhash" jdbcType="CHAR" property="blockhash" />
@@ -25,7 +25,7 @@
     delete from transaction
     where txid = #{txid,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.dto.Transaction">
+  <insert id="insert" parameterType="com.example.demo.po.Transaction">
     insert into transaction (txid, txhash, blockhash, 
       size, weight, time, 
       total_input, total_output, fees
@@ -35,7 +35,7 @@
       #{totalInput,jdbcType=DOUBLE}, #{totalOutput,jdbcType=DOUBLE}, #{fees,jdbcType=DOUBLE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.demo.dto.Transaction">
+  <insert id="insertSelective" parameterType="com.example.demo.po.Transaction">
     insert into transaction
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="txid != null">
@@ -96,7 +96,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dto.Transaction">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.po.Transaction">
     update transaction
     <set>
       <if test="txhash != null">
@@ -126,7 +126,7 @@
     </set>
     where txid = #{txid,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.dto.Transaction">
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.po.Transaction">
     update transaction
     set txhash = #{txhash,jdbcType=CHAR},
       blockhash = #{blockhash,jdbcType=CHAR},

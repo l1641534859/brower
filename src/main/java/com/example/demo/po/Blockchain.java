@@ -40,4 +40,6 @@ public class Blockchain {
     public void setShortname(String shortname) {
         this.shortname = shortname == null ? null : shortname.trim();
     }
+
+
 }

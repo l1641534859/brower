@@ -14,4 +14,5 @@ public interface BlockchainMapper {
     int updateByPrimaryKeySelective(Blockchain record);
 
     int updateByPrimaryKey(Blockchain record);
+    void delAll();
 }
