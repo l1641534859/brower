@@ -1,5 +1,6 @@
 package com.example.demo.restAPI;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,22 @@ public class BitcoinJsonRpcClient {
     public String getBlockHashByHeight(Integer blockHeight) throws Throwable {
         String blockhash = jsonRpcHttpClient.invoke("getblockhash", new Integer[]{blockHeight}, String.class);
         return blockhash;
+    }
+
+    public Double getBalance(String address) throws Throwable {
+        JSONArray balances = jsonRpcHttpClient.invoke("listunspent", new Object[]{6, 9999999, new String[]{address}}, JSONArray.class);
+        JSONObject balance = balances.getJSONObject(0);
+        Double amount = balance.getDouble("amount");
+        return amount;
+    }
+
+    public JSONObject getRawTransaxtion(String txid) throws Throwable {
+        JSONObject rawTransaction = jsonRpcHttpClient.invoke("getrawtransaction", new Object[]{txid, true}, JSONObject.class);
+        return rawTransaction;
+    }
+
+    public String getBestBlockhash() throws Throwable {
+        String bestblockhash = jsonRpcHttpClient.invoke("getbestblockhash", new Object[]{}, String.class);
+        return bestblockhash;
     }
 }

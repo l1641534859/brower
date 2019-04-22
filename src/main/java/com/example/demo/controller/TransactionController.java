@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.TransactionInfoDTO;
 import com.example.demo.dto.TransactionListDTO;
+import com.example.demo.servicer.MiscService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/transaction")
 public class TransactionController {
-
+    @Autowired
+    private MiscService miscService;
     @GetMapping("/getRecentTransactionsById")
     public List<TransactionListDTO> getRecentTransactionsById(@RequestParam Integer blockchainId){
         return null;

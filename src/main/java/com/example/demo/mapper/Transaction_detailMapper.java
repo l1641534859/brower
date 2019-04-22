@@ -2,6 +2,9 @@ package com.example.demo.mapper;
 
 import com.example.demo.po.Transaction_detail;
 import com.example.demo.po.Transaction_detailKey;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface Transaction_detailMapper {
     int deleteByPrimaryKey(Transaction_detailKey key);
@@ -15,4 +18,5 @@ public interface Transaction_detailMapper {
     int updateByPrimaryKeySelective(Transaction_detail record);
 
     int updateByPrimaryKey(Transaction_detail record);
+    List<Transaction_detail> selectByAddress(@Param("address") String address);
 }

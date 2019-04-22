@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AddressInfo;
 import com.example.demo.dto.TransactionInBlockDTO;
+import com.example.demo.po.Transaction_detail;
+import com.example.demo.servicer.MiscService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +17,16 @@ import java.util.List;
 @RequestMapping("/address")
 public class AddressController {
 
+    @Autowired
+    private MiscService miscService;
     @GetMapping("/getAddressInfo")
     public AddressInfo getAddressInfo(@RequestParam String address){
         return null;
     }
 
     @GetMapping("/getAddressTransactions")
-    public List<TransactionInBlockDTO> getAddressTransactions(@RequestParam String address,
-                                                              @RequestParam(required = false, defaultValue = "1") Integer pageNum){
+    public List<TransactionInBlockDTO> getAddressTransactions(@RequestParam String address, @RequestParam(required = false, defaultValue = "1") Integer pageNum){
+        List<Transaction_detail> transactionDetails = miscService.selectByAddress(address);
         return null;
     }
 
