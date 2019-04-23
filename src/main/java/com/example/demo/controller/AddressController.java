@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AddressInfo;
 import com.example.demo.dto.TransactionInBlockDTO;
+import com.example.demo.po.Transaction;
 import com.example.demo.po.Transaction_detail;
 import com.example.demo.servicer.MiscService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class AddressController {
     }
 
     @GetMapping("/getAddressTransactions")
-    public List<TransactionInBlockDTO> getAddressTransactions(@RequestParam String address, @RequestParam(required = false, defaultValue = "1") Integer pageNum){
+    public List<Transaction_detail> getAddressTransactions(@RequestParam String address, @RequestParam(required = false, defaultValue = "1") Integer pageNum){
         List<Transaction_detail> transactionDetails = miscService.selectByAddress(address);
-        return null;
+        return transactionDetails;
     }
 
 }

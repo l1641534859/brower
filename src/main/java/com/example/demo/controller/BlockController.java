@@ -31,16 +31,17 @@ public class BlockController {
     @Value("${blockchain.recentCount}")
     private Integer recentCount;
     @GetMapping("/getRecentBlocksById")
-    public List<BlockListDTO> getRecentBlocksById(@RequestParam Integer blockchainId){
+    public List<BlockListDTO> getRecentBlocksById(){
         List<Block> blocks = miscService.selectRecent();
         List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
             BlockListDTO blockListDTO = new BlockListDTO();
             blockListDTO.setHeight(block.getHeight());
-            blockListDTO.setTime(block.getTime());
+            blockListDTO.setTime(block.getTime().getTime());
             blockListDTO.setTxSize(block.getTxSize());
             blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
             return blockListDTO;
         }).collect(Collectors.toList());
+
         return blockListDTOS;
     }
 

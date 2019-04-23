@@ -47,7 +47,7 @@ public class MiscServiceImpl implements MiscService {
 
     @Async
     @Override
-    public void importFromHash(String blockHash, Boolean isClean) {
+    public void importFromHash(String blockHash, Boolean isClean) throws Throwable {
             if(isClean){
                 blockchain.delAll();
             }
@@ -62,6 +62,9 @@ public class MiscServiceImpl implements MiscService {
             Date date=new Date(time*100);
             block.setTime(date);
             JSONArray tx=json.getJSONArray("tx");
+            for (int i = 0; i < tx.size(); i++) {
+                importTx(tx.getJSONObject(i),hash,date);
+            }
             block.setTxSize(tx.size());
             block.setSizeOnDisk(json.getLong("size"));
             block.setDifficulty(json.getDouble("difficulty"));
@@ -75,11 +78,12 @@ public class MiscServiceImpl implements MiscService {
 
     @Override
     public List<Transaction_detail> selectByAddress(String address) {
-        return transaction_detailMapper.selectByAddress(address);
+        return transactionDetailMapper.selectByAddress(address);
     }
 
     @Override
     public List<Block> selectRecent() {
+
         return blockMapper.selectAll();
     }
     public void importTx(JSONObject tx, String blockhash, Date time) throws Throwable {

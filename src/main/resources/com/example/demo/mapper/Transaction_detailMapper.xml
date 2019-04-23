@@ -11,18 +11,13 @@
     txid, address, type, amount
   </sql>
   <select id="selectByPrimaryKey" parameterType="com.example.demo.po.Transaction_detailKey" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from transaction_detail
     where txid = #{txid,jdbcType=CHAR}
       and address = #{address,jdbcType=VARCHAR}
   </select>
-  <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from transaction_detail
-    where address = #{address}
-  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="com.example.demo.po.Transaction_detailKey">
     delete from transaction_detail
     where txid = #{txid,jdbcType=CHAR}
