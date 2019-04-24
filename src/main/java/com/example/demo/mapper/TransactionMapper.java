@@ -18,4 +18,5 @@ public interface TransactionMapper {
     int updateByPrimaryKey(Transaction record);
 
     List<Transaction> selectByAddress(String address);
+    List<Transaction> selectAll();
 }

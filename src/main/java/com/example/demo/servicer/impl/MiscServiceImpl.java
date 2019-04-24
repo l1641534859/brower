@@ -2,6 +2,7 @@ package com.example.demo.servicer.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.dto.TransactionListDTO;
 import com.example.demo.enumeration.TransactionDetailType;
 import com.example.demo.mapper.BlockMapper;
 import com.example.demo.mapper.BlockchainMapper;
@@ -86,6 +87,17 @@ public class MiscServiceImpl implements MiscService {
 
         return blockMapper.selectAll();
     }
+
+    @Override
+    public List<Transaction_detail> getRecentTransactionsById() {
+        return transactionDetailMapper.selectAll();
+    }
+
+    @Override
+    public List<Transaction> getTransactionsAll() {
+        return transactionMapper.selectAll();
+    }
+
     public void importTx(JSONObject tx, String blockhash, Date time) throws Throwable {
         Transaction transaction = new Transaction();
         String txid = tx.getString("txid");

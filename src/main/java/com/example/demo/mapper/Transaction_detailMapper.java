@@ -19,4 +19,5 @@ public interface Transaction_detailMapper {
 
     int updateByPrimaryKey(Transaction_detail record);
     List<Transaction_detail> selectByAddress(@Param("address") String address);
+    List<Transaction_detail> selectAll();
 }

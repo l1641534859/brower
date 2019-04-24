@@ -15,11 +15,17 @@
   <sql id="Base_Column_List">
     txid, txhash, blockhash, size, weight, time, total_input, total_output, fees
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from transaction
     where txid = #{txid,jdbcType=CHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from transaction

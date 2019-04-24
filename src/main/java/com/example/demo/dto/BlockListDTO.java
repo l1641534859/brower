@@ -7,6 +7,15 @@ public class BlockListDTO {
     private Long time;
     private Integer txSize;
     private Long sizeOnDisk;
+    private String hash;
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
 
     public Integer getHeight() {
         return height;
