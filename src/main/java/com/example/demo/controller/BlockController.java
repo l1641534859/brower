@@ -51,11 +51,17 @@ public class BlockController {
 
     @GetMapping("/getBlockDetailByHash")
     public BlockDetailDTO getBlockDetailByHash(@RequestParam String blockhash){
+
         return null;
     }
 
     @GetMapping("/getBlockDetailByHeight")
     public BlockDetailDTO getBlockDetailByHeight(@RequestParam Integer blockheight){
+
         return null;
+    }
+    @GetMapping("/getBlockByAddress")
+    public BlockDetailDTO getBlockByAddress(@RequestParam String address){
+        return miscService.getBlockByAddress(address);
     }
 }

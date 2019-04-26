@@ -2,6 +2,8 @@ package com.example.demo.servicer.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.dto.BlockDetailDTO;
+import com.example.demo.dto.TransactionInBlockDTO;
 import com.example.demo.dto.TransactionListDTO;
 import com.example.demo.enumeration.TransactionDetailType;
 import com.example.demo.mapper.BlockMapper;
@@ -21,6 +23,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.sql.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MiscServiceImpl implements MiscService {
@@ -96,6 +99,33 @@ public class MiscServiceImpl implements MiscService {
     @Override
     public List<Transaction> getTransactionsAll() {
         return transactionMapper.selectAll();
+    }
+
+    @Override
+    public BlockDetailDTO getBlockByAddress(String address) {
+        Block block=blockMapper.selectByPrimaryKey(address);
+        BlockDetailDTO blockDetailDTO=new BlockDetailDTO();
+        blockDetailDTO.setBlockhash(block.getBlockhash());
+        blockDetailDTO.setDifficulty(block.getDifficulty());
+        blockDetailDTO.setHeight(block.getHeight());
+        blockDetailDTO.setMerkleRoot(block.getMerkleRoot());
+        blockDetailDTO.setNextBlockhash(block.getNextBlockhash());
+        blockDetailDTO.setOutputTotal(block.getOutputTotal());
+        blockDetailDTO.setPrevBlockhash(block.getPrevBlockhash());
+        blockDetailDTO.setSizeOnDisk(block.getSizeOnDisk());
+        blockDetailDTO.setTime(block.getTime());
+        blockDetailDTO.setTransactionFees(block.getTransactionFees());
+        List<Transaction> list=transactionMapper.selectByAddress(address);
+        List<TransactionInBlockDTO> tlist=list.stream().map(transaction -> {
+            TransactionInBlockDTO t=new TransactionInBlockDTO();
+            t.setSize(transaction.getSize());
+            t.setTime(transaction.getTime());
+            t.setTxhash(transaction.getTxhash());
+            t.setTxid(transaction.getTxid());
+            return t;
+        }).collect(Collectors.toList());;
+        blockDetailDTO.setTransactions(tlist);
+        return blockDetailDTO;
     }
 
     public void importTx(JSONObject tx, String blockhash, Date time) throws Throwable {

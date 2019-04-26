@@ -16,7 +16,6 @@ public interface TransactionMapper {
     int updateByPrimaryKeySelective(Transaction record);
 
     int updateByPrimaryKey(Transaction record);
-
     List<Transaction> selectByAddress(String address);
     List<Transaction> selectAll();
 }

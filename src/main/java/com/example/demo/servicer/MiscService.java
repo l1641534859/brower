@@ -1,5 +1,6 @@
 package com.example.demo.servicer;
 
+import com.example.demo.dto.BlockDetailDTO;
 import com.example.demo.dto.TransactionListDTO;
 import com.example.demo.po.Block;
 import com.example.demo.po.Transaction;
@@ -20,4 +21,6 @@ public interface MiscService {
     List<Transaction_detail> getRecentTransactionsById();
 
     List<Transaction> getTransactionsAll();
+
+    BlockDetailDTO getBlockByAddress(String address);
 }

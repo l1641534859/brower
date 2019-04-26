@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.AddressInfo;
+import com.example.demo.dto.BlockDetailDTO;
 import com.example.demo.dto.TransactionInBlockDTO;
 import com.example.demo.po.Transaction;
 import com.example.demo.po.Transaction_detail;
@@ -30,5 +31,4 @@ public class AddressController {
         List<Transaction_detail> transactionDetails = miscService.selectByAddress(address);
         return transactionDetails;
     }
-
 }
