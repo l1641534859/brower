@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.po.Block;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface BlockMapper {
 
     int updateByPrimaryKey(Block record);
 
-    List<Block> selectAll();
+    Page selectAll();
 }

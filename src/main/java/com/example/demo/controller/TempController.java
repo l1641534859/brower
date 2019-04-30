@@ -39,4 +39,13 @@ public class TempController {
         address="000000000000002e694f50a45e32043505d0d01bae572253ed48b4446bb34ce8";
         return null;
     }
+    @GetMapping("/test1")
+    public void a(){
+        try {
+            String bestBlockhash = bitcoinJsonRpcClient.getBestBlockhash();
+            System.out.println(bestBlockhash);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
 }

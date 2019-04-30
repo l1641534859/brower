@@ -4,14 +4,12 @@ import com.example.demo.dto.ImportStateDTO;
 import com.example.demo.servicer.MiscService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/misc")
 @EnableAutoConfiguration
+@CrossOrigin
 public class MiscController {
 
     @Autowired
@@ -29,9 +27,14 @@ public class MiscController {
 
     @GetMapping("/importFromHash")
     public void importFromHash(@RequestParam String blockhash, Boolean isClean) throws Throwable {
+
         miscService.importFromHash(blockhash, isClean);
     }
+    @GetMapping("/importFromnextHash")
+    public void importFromnextHash(@RequestParam String blockhash, @RequestParam Boolean isClean) throws Throwable {
 
+        miscService.importFromnextHash(blockhash,isClean);
+    }
     @GetMapping("/getImportState")
     public ImportStateDTO getImportState(){
         return null;

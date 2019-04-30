@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.po.Transaction_detail;
 import com.example.demo.po.Transaction_detailKey;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,5 +20,6 @@ public interface Transaction_detailMapper {
 
     int updateByPrimaryKey(Transaction_detail record);
     List<Transaction_detail> selectByAddress(@Param("address") String address);
+    List<Transaction_detail> selectByTxid(@Param("txid") String txid);
     List<Transaction_detail> selectAll();
 }

@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.po.Transaction;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface TransactionMapper {
 
     int updateByPrimaryKey(Transaction record);
     List<Transaction> selectByAddress(String address);
-    List<Transaction> selectAll();
+    Page selectAll();
 }

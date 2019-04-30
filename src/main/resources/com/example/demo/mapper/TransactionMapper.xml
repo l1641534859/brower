@@ -25,7 +25,7 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from transaction
+    from transaction order by time desc
   </select>
   <select id="selectByAddress" parameterType="java.lang.String" resultMap="BaseResultMap">
     select

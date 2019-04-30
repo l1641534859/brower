@@ -6,6 +6,7 @@ import com.example.demo.po.Block;
 import com.example.demo.restAPI.BitcoinApi;
 import com.example.demo.restAPI.BitcoinJsonRpcClient;
 import com.example.demo.servicer.MiscService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,8 @@ public class BlockController {
     @Value("${blockchain.recentCount}")
     private Integer recentCount;
     @GetMapping("/getRecentBlocksById")
-    public List<BlockListDTO> getRecentBlocksById(){
-        List<Block> blocks = miscService.selectRecent();
+    public List<BlockListDTO> getRecentBlocksById(@RequestParam(defaultValue = "5") Integer page1){
+        List<Block> blocks = miscService.selectRecent(page1);
         List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
             BlockListDTO blockListDTO = new BlockListDTO();
             blockListDTO.setHeight(block.getHeight());

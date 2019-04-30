@@ -18,20 +18,20 @@ public class TransactionController {
     @Autowired
     private MiscService miscService;
     @GetMapping("/getRecentTransactionsById")
-    public List<TransactionListDTO> getRecentTransactionsById(@RequestParam(defaultValue = "2") Integer blockchainId){
+    public List<TransactionListDTO> getRecentTransactionsById(@RequestParam(defaultValue = "2") Integer blockchainId,@RequestParam(defaultValue = "5") Integer page2){
 
         List<Transaction_detail> list=miscService.getRecentTransactionsById();
-        List<Transaction> transactionList=miscService.getTransactionsAll();
-        List<TransactionListDTO> transactionlist = list.stream().map(block -> {
+        List<Transaction> transactionList=miscService.getTransactionsAll(page2);
+        List<TransactionListDTO> transactionlist = transactionList.stream().map(block -> {
             TransactionListDTO blockListDTO = new TransactionListDTO();
-            blockListDTO.setAmount(block.getAmount());
-            for (Transaction t:transactionList) {
+            for (Transaction_detail t:list) {
                 if(t.getTxid().equals(block.getTxid())) {
-                    blockListDTO.setTime(t.getTime().getTime());
+                    blockListDTO.setAmount(t.getAmount());
+                    blockListDTO.setTime(block.getTime().getTime());
+                    blockListDTO.setTxhash(block.getTxhash());
+                    blockListDTO.setTxid(block.getTxid());
                 }
             }
-            blockListDTO.setTxhash(block.getAddress());
-            blockListDTO.setTxid(block.getTxid());
             return blockListDTO;
         }).collect(Collectors.toList());
         return transactionlist;

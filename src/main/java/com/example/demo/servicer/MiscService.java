@@ -16,11 +16,12 @@ public interface MiscService {
 
     List<Transaction_detail> selectByAddress(String address);
 
-    List<Block> selectRecent();
+    List<Block> selectRecent(Integer page1);
 
     List<Transaction_detail> getRecentTransactionsById();
 
-    List<Transaction> getTransactionsAll();
+    List<Transaction> getTransactionsAll(Integer page2);
 
     BlockDetailDTO getBlockByAddress(String address);
+    void importFromnextHash(String blockHash, Boolean isClean) throws Throwable;
 }

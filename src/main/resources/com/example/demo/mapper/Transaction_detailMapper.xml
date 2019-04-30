@@ -17,6 +17,12 @@
     where txid = #{txid,jdbcType=CHAR}
       and address = #{address,jdbcType=VARCHAR}
   </select>
+  <select id="selectByTxid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction_detail
+    where txid = #{txid,jdbcType=CHAR}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

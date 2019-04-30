@@ -1,6 +1,10 @@
 package com.example.demo.dto;
 
-import java.util.Date;
+
+import com.example.demo.po.Transaction_detail;
+
+import java.sql.Date;
+import java.util.List;
 
 public class TransactionInBlockDTO {
     private String txid;
@@ -9,8 +13,16 @@ public class TransactionInBlockDTO {
 
     private Long size;
 
-    private Date time;
+    public List<Transaction_detail> getTransactionlist() {
+        return transactionlist;
+    }
 
+    public void setTransactionlist(List<Transaction_detail> transactionlist) {
+        this.transactionlist = transactionlist;
+    }
+
+    private Date time;
+    private List<Transaction_detail> transactionlist;
     public String getTxid() {
         return txid;
     }
