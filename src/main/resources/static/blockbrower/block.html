@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/elementui.css">
+</head>
+
+<body>
+    <div id="app" style="width:1000px">
+        <h1>块#{{block.height}}</h1>
+        <div style="float: left">
+            <table>
+                摘要<br>
+                交易数量 {{block.txSize}}<br>
+                输出总计 {{out}} BTC<br>
+                预计交易量 {{out}} BTC<br>
+                交易费用 {{block.transactionFees}} BTC<br>
+                高度 {{block.height}} （主链）<br>
+                时间戳 {{block.time}}<br>
+                收到的时间 {{block.time}}<br>
+                继续 BTC.com<br>
+                困难 {{block.difficulty}}<br>
+                位 {{block.sizeOnDisk}}<br>
+                尺寸 {{block.sizeOnDisk}} kB<br>
+                重量 {{block.height}} kWU<br>
+                版 0x20000000<br>
+                杜撰 3545517073<br>
+                阻止奖励 0.09BTC<br>
+            </table>
+        </div>
+        <div style="float: right">
+            <table>
+                哈希<br>
+                哈希 {{block.blockhash}}<br>
+                上一个块 {{block.prevBlockhash}}<br>
+                下一个街区 {{block.nextBlockhash}}<br>
+                Merkle Root{{block.merkleRoot}}<br>
+            </table>
+        </div>
+        <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+        <div>
+            <h1>交易</h1>
+            <template>
+                    <el-table
+                      :data="block.transactions"
+                      style="width: 100%">
+                      <el-table-column type="expand">
+                        <template slot-scope="props">
+                          <el-form label-position="left" inline class="demo-table-expand">
+                            <el-form-item>
+                              <span>{{props.row.address}}</span>
+                            </el-form-item>
+                          </el-form>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        label=""
+                        prop="txid">
+                      </el-table-column>
+                      <el-table-column
+                        label=""
+                        prop="time">
+                      </el-table-column>
+                      <el-table-column
+                        prop="size">
+                      </el-table-column>
+                    </el-table>
+                  </template>
+        </div>
+    </div>
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="viewmodels/block.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/elementui.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-button @click="getBlockRecent()">区块</el-button>
+        <el-button @click="TransactionList()">交易</el-button>
+        <el-table :data="recentBlocks" v-if="bollen">
+            <el-table-column label="高度">
+                <template slot-scope="scope">
+                    <a :href="'block?' + scope.row.hash">{{scope.row.height}}</a>
+                </template>
+            </el-table-column>
+            <el-table-column prop="showtime" label="时间">
+            </el-table-column>
+            <el-table-column prop="txSize" label="交易数量">
+            </el-table-column>
+            <el-table-column prop="showSizeOnDisk" label="大小">
+            </el-table-column>
+        </el-table>
+        <span v-if="bollen" style="margin-left: 590px ;"><a>查看更多</a></span>
+        <el-table :data="recentTransactions" v-if="bollen2">
+            <el-table-column label="交易哈希">
+                <template slot-scope="scope">
+                    <a :href="'block/' + scope.row.txid">{{scope.row.txhash}}</a>
+                </template>
+            </el-table-column>
+            <el-table-column prop="showtime" label="时间">
+            </el-table-column>
+            <el-table-column prop="amount" label="金额（BTC）">
+            </el-table-column>
+            <el-table-column prop="money" label="金额（美元）">
+            </el-table-column>
+        </el-table>
+        <span v-if="bollen2" style="margin-left: 590px ;"><a>查看更多</a></span>
+    </div>
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="viewmodels/lindex.js"></script>
+</body>
+
+</html>
